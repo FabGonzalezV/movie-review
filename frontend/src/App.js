@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Link, Route, Routes, useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import AddReview from "./components/add-review.js";
 import MoviesList from "./components/movies-list.js";
@@ -15,6 +15,7 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 
 function App() {
   const [user, setUser] = React.useState(null);
+  const navigate = useNavigate();
   async function login(user = null) {
     setUser(user);
   }
@@ -76,9 +77,9 @@ function App() {
       <Routes>
         <Route path="/" element={<MoviesList />} />
         <Route path="/movies" element={<MoviesList />} />
-        <Route path="/movies/:id/review" element={<AddReview user={user} />} />
-        <Route path="/movies/:id" element={<Movie user={user} />} />
-        <Route path="/login" element={<Login login={login} />} />
+        <Route path="/movies/:movieId/reviews" element={<AddReview user={user} />} />
+        <Route path="/movies/:movieId" element={<Movie user={user} />} />
+        <Route path="/login" element={<Login login={login} navigate={navigate} />} />
       </Routes>
     </>
   );

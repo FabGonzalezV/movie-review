@@ -28,6 +28,7 @@ async function run() {
     console.log(
       "Pinged your deployment. You successfully connected to MongoDB!"
     );
+   
     app.listen(port, (error) => {
       console.log(`Server is running on ${port}`);
       if (error) console.error(error);

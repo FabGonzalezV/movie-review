@@ -10,6 +10,7 @@ export default class MoviesController {
       filters.rated = req.query.rated;
     } else if (req.query.title) {
       filters.title = req.query.title;
+      
     }
     const { moviesList, totalNumMovies } = await MoviesDAO.getMovies({
       filters,
@@ -23,7 +24,9 @@ export default class MoviesController {
       entries_per_page: moviesPerPage,
       total_results: totalNumMovies,
     };
+     
     res.json(response);
+   
   }
   static async apiGetMovieById(req, res, next) {
     try {
@@ -48,4 +51,7 @@ export default class MoviesController {
       res.status(500).json({ error: e });
     }
   }
+
+  
 }
+

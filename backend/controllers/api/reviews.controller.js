@@ -56,4 +56,13 @@ export default class ReviewsController {
       res.status(500).json({ error: e.message });
     }
   }
+  static async apiGetMovieReviews(req, res, next) {
+    try {
+      const movieId = req.params.id; // O la forma en que obtienes el ID de la película
+      const reviews = await ReviewsDAO.getMovieReviews(movieId);
+      res.json(reviews);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  }
 }
